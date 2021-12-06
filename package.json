@@ -1,0 +1,16 @@
+{
+  "name": "Sistema-Josival-Penha-Desktop",
+  "version": "1.0.0",
+  "description": "Sistema-Josival-Penha-Desktop",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [],
+  "author": "Miguel Penha <miguel.penha1@gmail.com> (https://portfolio-sand-xi.vercel.app/)",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^16.0.2"
+  }
+}

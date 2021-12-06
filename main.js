@@ -1,4 +1,5 @@
-const { app, BrowserWindow } = require('electron')
+require('dotenv').config()
+const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 
 function createWindow () {
@@ -10,10 +11,10 @@ function createWindow () {
       nodeIntegration: true
     }
   })
+  
+  mainWindow.loadURL(process.env.URL)
 
-  mainWindow.webContents.session.clearStorageData()
-
-  mainWindow.loadURL('http://localhost:3001')
+  ipcMain.on('logout', (event, arg) => mainWindow.webContents.session.clearStorageData())
 }
 
 app.whenReady().then(() => {

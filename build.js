@@ -18,7 +18,7 @@ function addTask(task='', completed=true) {
     ])
 }
 
-if (shell.exec(`npx electron-packager . --platform=win32 --arch=x64 ${productName} --overwrite`).code === 0) {
+if (shell.exec(`npx electron-packager . --platform=win32 --asar --arch=x64 --icon="${path.resolve(__dirname, 'icons', 'icon.ico')}" ${productName} --overwrite`).code === 0) {
     addTask('Building from electron-packager')
 
     try {
@@ -36,3 +36,4 @@ if (shell.exec(`npx electron-packager . --platform=win32 --arch=x64 ${productNam
 }
 
 console.table(tasks.toString())
+

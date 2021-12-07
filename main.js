@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron')
+const { app, BrowserWindow, ipcMain, nativeImage } = require('electron')
 const path = require('path')
 
 function createWindow () {
@@ -8,7 +8,7 @@ function createWindow () {
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     },
-    icon: path.resolve(__dirname, 'icon.ico')
+    icon: nativeImage.createFromPath(path.resolve(__dirname, 'icons', 'icon.png'))
   })
   
   mainWindow.loadURL('https://sistema.josivalpenha.com')

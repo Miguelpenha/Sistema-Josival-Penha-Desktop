@@ -1,19 +1,21 @@
 {
-  "name": "Sistema-Josival-Penha-Desktop",
+  "name": "sistema-josival-penha-desktop",
   "version": "1.0.0",
-  "description": "Sistema-Josival-Penha-Desktop",
+  "description": "sistema josival penha desktop",
+  "productName": "sistema-josival-penha-desktop",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "node build.js"
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": "https://github.com/Miguelpenha/Sistema-Josival-Penha-Desktop",
   "keywords": [],
   "author": "Miguel Penha <miguel.penha1@gmail.com> (https://portfolio-sand-xi.vercel.app/)",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^16.0.2"
-  },
-  "dependencies": {
-    "dotenv": "^10.0.0"
+    "chalk": "^4.1.2",
+    "cli-table": "^0.3.11",
+    "electron": "^16.0.2",
+    "shelljs": "^0.8.4"
   }
 }

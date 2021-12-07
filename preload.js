@@ -10,4 +10,3 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   })
 })
-

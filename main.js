@@ -1,4 +1,3 @@
-require('dotenv').config()
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 
@@ -7,14 +6,14 @@ function createWindow () {
     width: 800,
     height: 600,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
-      nodeIntegration: true
-    }
+      preload: path.join(__dirname, 'preload.js')
+    },
+    icon: path.resolve(__dirname, 'icon.ico')
   })
   
-  mainWindow.loadURL(process.env.URL)
+  mainWindow.loadURL('https://sistema.josivalpenha.com')
 
-  ipcMain.on('logout', (event, arg) => mainWindow.webContents.session.clearStorageData())
+  ipcMain.on('logout', () => mainWindow.webContents.session.clearStorageData())
 }
 
 app.whenReady().then(() => {

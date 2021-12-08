@@ -1,23 +1,31 @@
-const { app, BrowserWindow, ipcMain, nativeImage } = require('electron')
+const { app, BrowserWindow, ipcMain, nativeImage, session } = require('electron')
 const path = require('path')
+const production = true
 
-function createWindow () {
+async function createWindow () {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      preload: path.join(__dirname, 'preload.js'),
+      devTools: production ? false : true
     },
     icon: nativeImage.createFromPath(path.resolve(__dirname, 'icons', 'icon.png'))
   })
   
-  mainWindow.loadURL('https://sistema.josivalpenha.com')
+  const cookieDesktop = await session.defaultSession.cookies.get({name: 'auth.desktop'})
+  const cookieAdmin = await session.defaultSession.cookies.get({name: 'auth.token.administrativo'})
+  const cookieProf = await session.defaultSession.cookies.get({name: 'auth.token.professoras'})
 
-  ipcMain.on('logout', () => mainWindow.webContents.session.clearStorageData())
+  const baseURL = production ? 'https://sistema.josivalpenha.com' : 'http://localhost:3001'
+
+  mainWindow.loadURL(`${baseURL}/${cookieDesktop && cookieAdmin && 'desktop/administrativo' || cookieDesktop && cookieProf && 'desktop/professoras'}`)
+  
+  ipcMain.on('logout', async () => await session.defaultSession.clearStorageData())
 }
 
 app.whenReady().then(() => {
-  createWindow()
+  createWindow().then()
 
   app.on('activate', () =>  BrowserWindow.getAllWindows().length === 0 && createWindow())
 })

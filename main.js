@@ -8,7 +8,7 @@ async function createWindow () {
     height: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
-      devTools: production ? false : true
+      devTools: true
     },
     icon: nativeImage.createFromPath(path.resolve(__dirname, 'icons', 'icon.png'))
   })
